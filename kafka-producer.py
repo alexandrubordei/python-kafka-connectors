@@ -1,0 +1,10 @@
+#!/usr/bin/python
+
+from kafka import KafkaProducer
+
+json = '{"user_action_id":{"long":1346801},"user_id":{"long":243008914},"customer_id":{"long":0},"session_id":{"string":"2icprcma5qp6ch52lk6sbm0ag7"},"remote_addr":{"string":"78.96.2.37"},"forwarded_for":{"string":""},"php_self":{"string":"/search-tools/suggest/products/masini%20de/0"},"keywords":{"string":""},"action":{"string":"ignore_Browsing ProductListing Search suggestProducts"},"category_id":{"long":0},"widget_page_id":{"int":0},"brand_id":{"long":0},"products_id":{"long":0},"time":{"long":1446425827000},"data":{"long":1446422400000},"ora":{"long":25027000},"referer":{"string":"http://m.emag.ro/resigilate/telefoane-mobile-accesorii/listall?ref=ps&emag_click_id=d2a1a979295cae63902266599533373b"},"referer_section":{"string":""},"referer_site":{"string":"m.emag.ro"},"user_agent":{"string":"Mozilla/5.0 (Linux; Android 4.4.4; SM-G530FZ Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36"},"browser_name":{"string":"Chrome"},"browser_version":{"string":"33"},"operating_system":{"string":"AndroidOS"},"device":{"string":"undefined"},"device_type":{"string":"phone"},"click_to":{"long":3168216612},"link_type":{"int":0},"link_id":{"int":0},"response_code":{"int":200},"id_abonat":{"long":0},"timp_generare":{"string":"1.7870"},"cache_age":{"long":0},"ipREGION":{"string":"ALBA"},"ipCITY":{"string":"BLAJ"},"selectedRegion":{"string":""},"selectedCity":{"string":""},"spider_detection_status":{"int":0},"app_esi_call":{"boolean":false},"hostname":{"string":"m.emag.ro"},"lb":{"string":"lb1.emag.ro"},"ab_option":{"string":""},"set_cookie":{"int":0},"user_remember":{"string":"empty"},"products_status":{"int":0},"info_id":{"int":0},"partner_cookie":{"string":"-"}}'
+
+
+producer = KafkaProducer(bootstrap_servers='instance-18171.bigstep.io:9092,instance-18169.bigstep.io:9092,instance-18170.bigstep.io:9092')
+for _ in range(100000000):
+	producer.send('clickstreamjson',json.encode('utf-8'))
